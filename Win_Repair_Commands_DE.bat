@@ -94,7 +94,7 @@ set /p "runOpt=6. Alle Laufwerke optimieren (Defrag/TRIM je nach Laufwerkstyp)? 
 if /i "%runOpt%"=="J" (
     echo.
     echo Starte Optimierung fuer alle Laufwerke (Windows erkennt automatisch SSD/HDD)...
-    defrag /C /U /V
+    cmd /c defrag /C /U /V
     echo.
     echo Laufwerksoptimierung abgeschlossen.
     echo --------------------------------------------------------
