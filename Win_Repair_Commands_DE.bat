@@ -104,30 +104,12 @@ if errorlevel 2 (
 )
 
 echo ========================================================
-echo                     Arbeitsspeicher-Optionen
-echo ========================================================
-echo.
-
-:: 7. RAM / Arbeitsspeicher prüfen (mdsched)
-choice /c JN /m "7. Arbeitsspeicher auf Fehler pruefen mdsched Neustart noetig"
-if errorlevel 2 (
-    echo Uebersprungen.
-    echo.
-) else (
-    echo.
-    echo Starte Windows-Speicherdiagnose...
-    mdsched.exe
-    echo Die Speicherdiagnose wurde vorbereitet/gestartet.
-    echo --------------------------------------------------------
-)
-
-echo ========================================================
 echo                      Festplatten-Optionen
 echo ========================================================
 echo.
 
-:: 8. Festplatten-Überprüfung (chkdsk) auf allen Laufwerken
-choice /c JN /m "8. Alle Laufwerke auf Fehler pruefen chkdsk"
+:: 7. Festplatten-Überprüfung (chkdsk) auf allen Laufwerken
+choice /c JN /m "7. Alle Laufwerke auf Fehler pruefen chkdsk"
 if errorlevel 2 (
     echo Uebersprungen.
     echo.
@@ -140,6 +122,24 @@ if errorlevel 2 (
     )
     echo.
     echo Alle Laufwerke wurden fuer den naechsten Systemstart eingeplant.
+    echo --------------------------------------------------------
+)
+
+echo ========================================================
+echo                     Arbeitsspeicher-Optionen
+echo ========================================================
+echo.
+
+:: 8. RAM / Arbeitsspeicher prüfen (mdsched)
+choice /c JN /m "8. Arbeitsspeicher auf Fehler pruefen mdsched Neustart noetig"
+if errorlevel 2 (
+    echo Uebersprungen.
+    echo.
+) else (
+    echo.
+    echo Starte Windows-Speicherdiagnose...
+    mdsched.exe
+    echo Die Speicherdiagnose wurde vorbereitet/gestartet.
     echo --------------------------------------------------------
 )
 
