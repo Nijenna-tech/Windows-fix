@@ -1,6 +1,6 @@
 @echo off
 setlocal
-title Windows Reparatur-Tool (SFC ^& DISM)
+title Windows Reparatur- und Netzwerk-Tool (SFC ^& DISM)
 
 :: Admin-Rechte prüfen und ggf. neu starten
 net session >nul 2>&1
@@ -64,6 +64,42 @@ if /i "%runRestore%"=="J" (
     echo --------------------------------------------------------
 ) else (
     echo Uebersprungen.
+    echo.
+)
+
+echo ========================================================
+echo                  Netzwerk-Optionen
+echo ========================================================
+echo.
+
+:: 5. IP-Adresse neu zuweisen
+set /p "runIP=5. Wollen Sie Ihre IP Adresse neu zuweisen? (J/N): "
+if /i "%runIP%"=="J" (
+    echo.
+    ipconfig /release
+    echo.
+    echo Ihre IP Adresse wurde freigegeben...
+    echo Es wird automatisch eine neue zugewiesen in 5 sekunden...
+    timeout /t 5 /nobreak >nul
+    ipconfig /renew
+    echo.
+    echo Ihre IP Adresse wurde nun wieder zugewiesen...
+    echo --------------------------------------------------------
+) else (
+    echo IP-Adresse wurde nicht neu zugewiesen.
+    echo.
+)
+
+:: 6. DNS-Cache leeren
+set /p "runDNS=6. Wollen Sie Ihren DNS Cache leeren? (J/N): "
+if /i "%runDNS%"=="J" (
+    echo.
+    ipconfig /flushdns
+    echo.
+    echo DNS-Cache wurde erfolgreich geleert.
+    echo --------------------------------------------------------
+) else (
+    echo DNS-Cache wurde nicht geleert.
     echo.
 )
 
