@@ -104,30 +104,12 @@ if errorlevel 2 (
 )
 
 echo ========================================================
-echo                     Memory Options
-echo ========================================================
-echo.
-
-:: 7. Check RAM / Memory (mdsched)
-choice /c JN /m "7. Check memory for errors mdsched restart required"
-if errorlevel 2 (
-    echo Skipped.
-    echo.
-) else (
-    echo.
-    echo Starting Windows Memory Diagnostic...
-    mdsched.exe
-    echo Memory diagnostic has been prepared/started.
-    echo --------------------------------------------------------
-)
-
-echo ========================================================
 echo                      Drive Options
 echo ========================================================
 echo.
 
-:: 8. Disk check (chkdsk) on all drives
-choice /c JN /m "8. Check all drives for errors chkdsk"
+:: 7. Disk check (chkdsk) on all drives
+choice /c JN /m "7. Check all drives for errors chkdsk"
 if errorlevel 2 (
     echo Skipped.
     echo.
@@ -140,6 +122,24 @@ if errorlevel 2 (
     )
     echo.
     echo All drives have been scheduled for the next system startup.
+    echo --------------------------------------------------------
+)
+
+echo ========================================================
+echo                     Memory Options
+echo ========================================================
+echo.
+
+:: 8. Check RAM / Memory (mdsched)
+choice /c JN /m "8. Check memory for errors mdsched restart required"
+if errorlevel 2 (
+    echo Skipped.
+    echo.
+) else (
+    echo.
+    echo Starting Windows Memory Diagnostic...
+    mdsched.exe
+    echo Memory diagnostic has been prepared/started.
     echo --------------------------------------------------------
 )
 
